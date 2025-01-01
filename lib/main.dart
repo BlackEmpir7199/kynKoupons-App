@@ -1,5 +1,9 @@
 // lib/main.dart
 import 'package:flutter/material.dart';
+import 'package:kynkoupons/features/home/providers/post_provider.dart';
+import 'package:kynkoupons/features/home/providers/user_provider.dart';
+import 'package:kynkoupons/features/home/screens/home_screen.dart';
+import 'package:kynkoupons/features/rewards/screens/reward_details.dart';
 import 'package:provider/provider.dart';
 import 'core/themes/app_theme.dart';
 import 'core/themes/theme_provider.dart';
@@ -17,6 +21,10 @@ class MyApp extends StatelessWidget {
       providers: [
         ChangeNotifierProvider(create: (_) => ThemeProvider()),
         ChangeNotifierProvider(create: (_) => RewardsProvider()),
+        ChangeNotifierProvider(create: (_) => HomeProvider()),
+        ChangeNotifierProvider(create: (_) => PostProvider()),
+        ChangeNotifierProvider(create: (_) => SearchProvider()),
+        ChangeNotifierProvider(create: (_) => UserProvider()),
       ],
       child: Consumer<ThemeProvider>(
         builder: (context, themeProvider, child) {
@@ -26,7 +34,7 @@ class MyApp extends StatelessWidget {
             theme: AppTheme.lightTheme,
             darkTheme: AppTheme.darkTheme,
             themeMode: themeProvider.isDarkMode ? ThemeMode.dark : ThemeMode.light,
-            home: RewardsScreen(),
+            home: HomeScreen(),
           );
         },
       ),
